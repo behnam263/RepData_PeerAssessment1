@@ -24,8 +24,9 @@ data <- read.csv("activity.csv",colClasses = c("numeric", "Date", "numeric"))
 ## What is mean total number of steps taken per day?
 byDay <- aggregate(steps ~ date, data, sum)
 byDay <- cbind(byDay, label = rep("with.na", nrow(byDay)))
-
-barplot(byDay$steps,  names.arg =byDay$date, xlab = "date", ylab = "steps")
+ggplot(byDay, aes(x = steps)) + geom_histogram(binwidth = 1500, colour = "blue", 
+    fill = "white") + labs(title = "Steps Taken per Day", x = "Number of Steps", 
+    y = "Frequency")
 ```
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
